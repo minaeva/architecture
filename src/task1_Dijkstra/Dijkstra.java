@@ -71,7 +71,6 @@ public class Dijkstra {
                     char charInStack = stack.charAt(j);
                     stack = stack.substring(0, stack.length() - 1);
                     if (Character.valueOf('(').equals(charInStack)) {
-//                        j = -1;
                         break;
                     } else {
                         out += charInStack;
