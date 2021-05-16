@@ -4,18 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/* *** Restrictions ***
+* input string:
+*   - only one-symbol digits are accepted
+*   - no validation in this version (there is one in task1)
+* division is still implemented without decimal part
+* */
 public class Dijkstra {
+    private static final String input = "2+3*5-5+4*2+2-2-8/4";
+
     final static String highPriority = "*/";
     final static String lowPriority = "+-";
     final static String operations = highPriority + lowPriority;
     static OwnStack stack = new OwnStack();
     static String bpn = new String();
     static OwnStringStack stringStack = new OwnStringStack();
+    //counter used in processSymbol()
     static int i = 0;
 
-    private static final String input = "2+3*5-5+4*2+2-2-4/4";
 
     public static void main(String[] args) {
+        System.out.println("input string \n" + input);
         //get backward_polish_notation with the help of MAP
         List<Character> list = input.chars()
                 .mapToObj(ch -> (char) ch)
@@ -24,7 +33,7 @@ public class Dijkstra {
         if (stack.size() > 0) {
             bpn = pushStackToBpn(stack, bpn);
         }
-        System.out.println(bpn);
+        System.out.println("backward polish notation \n" + bpn);
 
         List<String> bpnList = bpn.chars()
                 .mapToObj(c -> (char) c)
@@ -33,12 +42,12 @@ public class Dijkstra {
 
         //recursion way
         int result1 = countRecurse(bpnList, 0);
-        System.out.println(result1);
+        System.out.println("recursion way " + result1);
 
         //reduce way
         String result2 = bpnList.stream().reduce("0",
                 (first, second) -> String.valueOf(countReduce(first, second)));
-        System.out.println(result2);
+        System.out.println("reduce way " + result2);
     }
 
     private static int countRecurse(List<String> oldBpn, int i) {
@@ -78,6 +87,7 @@ public class Dijkstra {
     }
 
     private static int countReduce(String first, String second) {
+        //"0" is returned when last operation was "add number to stack"
         if (!first.equals("0")) {
             stringStack.add(first);
         }
