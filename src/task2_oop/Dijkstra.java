@@ -95,10 +95,11 @@ public class Dijkstra {
     }
 
     public int getResultFromRPN(String input) {
+        String operations = highPriority + lowPriority;
         List<Integer> stack = new ArrayList<>();
         char[] charArray = input.toCharArray();
         for (char c : charArray) {
-            if (highPriority.indexOf(c) > -1 || lowPriority.indexOf(c) > -1) {
+            if (operations.indexOf(c) > -1) {
                 int first = stack.get(stack.size() - 2);
                 int second = stack.get(stack.size() - 1);
                 char operation = c;
