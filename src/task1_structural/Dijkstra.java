@@ -1,4 +1,4 @@
-package task1_Dijkstra;
+package task1_structural;
 
 import java.util.*;
 import java.util.regex.Matcher;

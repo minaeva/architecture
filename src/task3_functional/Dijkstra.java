@@ -13,7 +13,7 @@ public class Dijkstra {
     static OwnStringStack stringStack = new OwnStringStack();
     static int i = 0;
 
-    private static final String input = "2+3*5-1*2-4";
+    private static final String input = "2+3*5-5+4*2+2-2-4/4";
 
     public static void main(String[] args) {
         //get backward_polish_notation with the help of MAP
@@ -94,7 +94,8 @@ public class Dijkstra {
                 case "*":
                     return stringStack.popInt() * stringStack.popInt();
                 case "/":
-                    return 1/stringStack.popInt() * stringStack.popInt();
+                    int toDivideBy = stringStack.popInt();
+                    return stringStack.popInt()/toDivideBy;
             }
         }
         throw new RuntimeException("Unsupported operation " + second);
