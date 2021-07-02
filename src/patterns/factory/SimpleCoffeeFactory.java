@@ -1,4 +1,4 @@
-package factory;
+package patterns.factory;
 
 public class SimpleCoffeeFactory {
     public Coffee createCoffee (CoffeeType type) {

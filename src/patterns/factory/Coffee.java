@@ -1,4 +1,4 @@
-package factory;
+package patterns.factory;
 
 public class Coffee {
     public void grindCoffee(){
